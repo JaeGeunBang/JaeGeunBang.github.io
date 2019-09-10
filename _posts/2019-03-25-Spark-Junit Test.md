@@ -11,6 +11,7 @@ last_modified_at: 2019-03-14T12:57:42+09:00
 ---
 
 스파크로 개발 후 주요 기능에 대해 테스트를 진행해보자.
+
 먼저 pom.xml에 아래 dependency를 추가한다.
 
 ```xml
@@ -27,7 +28,10 @@ last_modified_at: 2019-03-14T12:57:42+09:00
 </dependency>
 ```
 
+
+
 아래 wordCount 메서드를 테스트해보자.
+
 ```scala
 package com.example.test
 
@@ -58,6 +62,8 @@ object WordCount {
 }
 ```
 
+
+
 test 폴더에 test를 위한 클래스를 생성 후 ScalaTest가 제공하는 FunSuite를 통해 쉽게 테스트를 할 수 있다.
 
 ```scala
@@ -80,7 +86,11 @@ class WordCount extends FunSuite with SharedSparkContext {
   }  
 }
 ```
-여기서 SharedSparkContext는 아래와 같이 정의한다. SharedSparkContext는 테스트에서 SparkContext 호출이 필요한 메서드들이 공통으로 사용할 수 있다. <br>
+
+
+여기서 SharedSparkContext는 아래와 같이 정의한다. 
+
+SharedSparkContext는 테스트에서 SparkContext 호출이 필요한 메서드들이 공통으로 사용할 수 있다.
 
 ```scala
 import org.apache.spark.SparkContext  
@@ -105,9 +115,14 @@ trait SharedSparkContext extends BeforeAndAfterAll { self: Suite =>
 ```
 실행 후 테스트 결과를 확인한다. <br>
 
-## private method 테스트 방법
-만약 위 wordCount 기능이 private으로 선언되어있다면, 외부 Test Class에서 호출할 수 없다.<br>
+
+
+### private method 테스트 방법
+
+만약 위 wordCount 기능이 private으로 선언되어있다면, 외부 Test Class에서 호출할 수 없다.
+
 이를 위해 리플렉션을 통해 해당 메서드를 접근할 수 있다.
+
 ```scala
 import org.scalatest._  
 import org.junit.Assert._ 
@@ -133,7 +148,10 @@ class WordCount extends FunSuite with SharedSparkContext {
 }
 ```
 
+
+
 ### 참고
+
 [http://www.scalatest.org/getting_started_with_fun_suite](http://www.scalatest.org/getting_started_with_fun_suite)
 
 [https://www.slideshare.net/SparkSummit/spark-summit-eu-talk-by-ted-malaska](https://www.slideshare.net/SparkSummit/spark-summit-eu-talk-by-ted-malaska)

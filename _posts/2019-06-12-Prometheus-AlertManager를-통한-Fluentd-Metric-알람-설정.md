@@ -10,7 +10,6 @@ last_modified_at: 2019-06-12T12:57:42+09:00
 ---
 
 
-# Prometheus-AlertManager를-통한-Fluentd-Metric-알람-설정
 
 Fluentd와 Prometheus를 셋팅하면 아래와 같이 Prometheus Web brower에서 아래와 같은 Metric을 볼 수 있다.
 
@@ -20,15 +19,19 @@ Fluentd와 Prometheus를 셋팅하면 아래와 같이 Prometheus Web brower에�
 
 ![p_2](https://user-images.githubusercontent.com/22383120/59328841-61c4b380-8d28-11e9-8ffa-dddf8f1e9bc7.png)
 
-하지만 서버 대수가 많아질 수록 Grafana를 통해 일일이 모든 지표를 확인하기가 쉽지 않다. 그렇기 때문에 Prometheus Alertmanager를 통해 주요 지표에 대해서는 알람을 보내주는 것이 좋다.
+하지만 서버 대수가 많아질 수록 Grafana를 통해 일일이 모든 지표를 확인하기가 쉽지 않다. 
+
+그렇기 때문에 Prometheus Alertmanager를 통해 주요 지표에 대해서는 알람을 보내주는 것이 좋다.
 
 간단하게 Fluentd 서버가 다운되었을 때 Slack, G-mail로 알람을 받아보자. Fluentd 의 다운 여부는 up 지표를 통해 알 수 있다.
 
 
 
-## Prometheus Alertmanager
+### Prometheus Alertmanager
 
-프로메테우스에서 수집한 메트릭에 특정 조건이 발생 시 알람을 전송하며, 알람 매니저는 전달받은 알람을 조작할 수 있으며, 목적지에 알람을 전송해준다. 알람 조작을 통해 중복 알람 제거, 알람 그룹핑, 라우팅 등을 수행할 수 있다.
+프로메테우스에서 수집한 메트릭에 특정 조건이 발생 시 알람을 전송하며, 알람 매니저는 전달받은 알람을 조작할 수 있으며, 목적지에 알람을 전송해준다. 
+
+알람 조작을 통해 중복 알람 제거, 알람 그룹핑, 라우팅 등을 수행할 수 있다.
 
 
 
@@ -179,7 +182,11 @@ rule_files:
 
 
 
-이 후 프로메테우스, 프로메테우스 알람매니저를 실행하며, fluentd를 실제 stop 하면 slack, g-mail에 알람이 오는 것을 확인할 수 있다. 확인을 빠르게 하고 싶다면 `group_wait`, `group_interval`, `  repeat_interval`을 짧게 설정한다.
+이 후 프로메테우스, 프로메테우스 알람매니저를 실행하며, fluentd를 실제 stop 하면 slack, g-mail에 알람이 오는 것을 확인할 수 있다. 
+
+확인을 빠르게 하고 싶다면 `group_wait`, `group_interval`, `  repeat_interval`을 짧게 설정한다.
+
+
 
 ![p_3](https://user-images.githubusercontent.com/22383120/59331828-d0f1d600-8d2f-11e9-8dc4-56f9e5a6d5be.PNG)
 
@@ -191,7 +198,7 @@ rule_files:
 
 
 
-## 필요한 Metric의 Alert 설정
+### 필요한 Metric의 Alert 설정
 
 ![1](https://user-images.githubusercontent.com/22383120/61356099-95a77180-a8b0-11e9-90af-d86966f7e5d5.png)
 ![2](https://user-images.githubusercontent.com/22383120/61356104-96d89e80-a8b0-11e9-860a-aa8c90b9f55f.png)

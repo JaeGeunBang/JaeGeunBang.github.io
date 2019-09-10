@@ -15,7 +15,9 @@ last_modified_at: 2019-02-08T12:57:42+09:00
 
 앞서 구축한 프로젝트를 바탕으로 Rest API를 받아보자.
 
-## 프로젝트 구조
+
+
+### 프로젝트 구조
 
 ![spring_2](https://user-images.githubusercontent.com/22383120/52461702-86aaed80-2bb3-11e9-9e7b-8720b4fa57ba.PNG)
 
@@ -28,6 +30,8 @@ last_modified_at: 2019-02-08T12:57:42+09:00
 > restController: 외부 client에 Rest API 요청을 받는다.
 
 > service: 서비스에 필요한 작업을 처리한다.
+
+
 
 
 ### repository
@@ -52,7 +56,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 findAll(), saveAll(), deleteAll() 등
 
 > @Query: SQL문을 통해 테이블에서 데이터를 조작할 수 있다. 옵션으로 nativeQuery =  true로 함으로써 순수한 SQL문을 사용할 수 있다.
->> 디폴트는 JPQL이다. (nativeQuery = true를 지우면 된다.)
+>
+> > 디폴트는 JPQL이다. (nativeQuery = true를 지우면 된다.)
+
+
 
 ### JPQL, SQL 차이는?
 JPQL은 객체를 기준으로 데이터를 조작하고, SQL은 테이블을 기준으로 데이터를 조작한다.
@@ -62,10 +69,16 @@ JPQL은 객체를 기준으로 데이터를 조작하고, SQL은 테이블을 �
 > @Query(value =  "SELECT x FROM **Customer** x ORDER BY **x.firstName**")
 > Customer와 firstName은 객체의 이름과 필드명이다. 
 
+
+
 JPQL을 사용하면 사용자가 DB에 직접 조작하는 것 없이, 객체 작업만으로도 DB를 조작할 수 있기 때문에 SQL문을 사용하는 것보다 JPQL을 쓰는 것이 좋다.
+
 (이를 가능하게 해주는 기술이 `Hibernate`이다.)
 
+
+
 해당 예제에서는 간단한 예제라 순수 SQL문을 써봤다.
+
 
 
 ### service
@@ -97,7 +110,10 @@ public class CustomerService{
 > @Autowired: 의존성 주입(DI)을 위해 사용한다. 
 > 즉, CustomerService와 CustomerRepository의 의존 관계가 생성되며, 이는 스프링의 어플리케이션 컨텍스트가 객체의 생명 주기와 의존 관계를 관리한다.
 
+
+
 ### restController
+
 CustomerRestController.java는 아래와 같다.
 
 ```java
@@ -131,12 +147,17 @@ public class CustomerRestController {
 > 2. 해당 에노테이션이 메서드에 붙어있다면, 클래스에 붙은 Path와 더해진 Path로 접근할 수 있다. (localhost:8080/api/customer)
 
 
+
 ## Rest API 확인
 
 Rest API 요청을 확인하기 위해 Postman을 사용했다. (그냥 브라우저에 입력해도 된다.)
+
 URL: localhost:8080/api/customer
 
 ![spring_5](https://user-images.githubusercontent.com/22383120/52464375-de4e5680-2bbd-11e9-805c-e6a39eb7939b.PNG)
 
+
+
 ### 코드
+
 [https://github.com/JaeGeunBang/springboot_sts_tutorial/tree/master/spring_boot_application_2](https://github.com/JaeGeunBang/springboot_sts_tutorial/tree/master/spring_boot_application_2)

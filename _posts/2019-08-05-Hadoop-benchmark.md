@@ -205,7 +205,7 @@ Rack이 R개라고 한다면, Rack 간 커넥션은 처음에 R 이후에 2R, 3R
 
 
 
-## Hadoop (HDFS) 테스트
+### Hadoop (HDFS) 테스트
 
 일단 하드웨어에 대한 테스트가 끝이났다면, 실제 하둡을 이루는 HDFS, Yarn/MapReduce에 대한 테스트가 필요하다. 
 
@@ -277,7 +277,7 @@ average는 `매퍼에 의해 보고된 모든 rate / 전체 매퍼 수`를 바�
 
 
 
-## Genaral 테스트
+### Genaral 테스트
 
 Hadoop에서 일반적인 테스트를 할 때 많이 사용하는 툴은 TeraSort이다. 
 
@@ -316,9 +316,3 @@ mapper의 수는 전체 클러스터 노드의 disk 수와 동일하게 한다.
 TeraSort는 HDFS Replication을 1, 3으로 각각 두어 테스트를 진행한다. 
 
 이를 조정하기 위해 `mapreduce.terasort.output.replication` 파라미터를 이용한다.
-
-
-
-## 참고
-
-https://www.cloudera.com/documentation/other/reference-architecture/PDF/cloudera_ref_arch_metal.pdf
