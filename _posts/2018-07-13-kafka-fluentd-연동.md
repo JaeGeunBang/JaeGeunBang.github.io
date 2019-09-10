@@ -6,7 +6,7 @@ categories:
 tags:
   - fluentd
   - kafka
-last_modified_at: 2018-07-09T12:57:42+09:00
+last_modified_at: 2018-07-09T12:57:42-05:00
 ---
 
 이번에 kafka의 다른 데이터를 저장소로 옮길 때, fluentd를 이용했습니다.(elasticsearch, s3) <br>
