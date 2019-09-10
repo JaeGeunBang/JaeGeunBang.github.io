@@ -8,10 +8,9 @@ tags:
 last_modified_at: 2019-02-08T12:57:42+09:00
 ---
 
+[Spring boot Application 구축(1)](https://jaegeunbang.github.io/posts/2019/02/08/Spring-Boot-Application-구축(1).html)
 
-[Spring boot Application 구축(1)](https://jaegeunbang.github.io/web.springboot/Spring-Boot-Application-%EA%B5%AC%EC%B6%95(1)/)
-
-[Spring boot Application 구축(2)](https://jaegeunbang.github.io/web.springboot/Spring-Boot-Application-%EA%B5%AC%EC%B6%95(2)/)
+[Spring boot Application 구축(2)](https://jaegeunbang.github.io/posts/2019/02/08/Spring-Boot-Application-구축(1).html)
 
 앞서 구축한 프로젝트를 바탕으로 Rest API를 받아보자.
 

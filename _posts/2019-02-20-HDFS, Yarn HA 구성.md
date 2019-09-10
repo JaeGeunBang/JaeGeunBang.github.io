@@ -24,37 +24,38 @@ HA 구성을 위해 주키퍼 설치가 필요하다.
 
 **Hadoop-1 (192.168.56.191)**
 
-NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager
+`NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager`
 
 
 
 **Hadoop-2 (192.168.56.192)**
 
-NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager 
+`NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager `
 
 
 
 **Hadoop-3 (192.168.56.193)**
 
-JournalNode, Zookeeper, DataNode, NodeManager
+`JournalNode, Zookeeper, DataNode, NodeManager`
 
 
 
 **Hadoop-4 (192.168.56.194)**
 
-DataNode, NodeManager
+`DataNode, NodeManager`
 
 
 
 **Hadoop-5 (192.168.56.195)**
 
-DataNode, NodeManager
+`DataNode, NodeManager`
 
 
 
 
 네임노드와 리소스매니저는 Hadoop 1,2 서버에서 서비스가 동작한다.
-- Active, Standby
+
+`Active, Standby`
 
 
 
@@ -356,31 +357,31 @@ vi /home/zookeeper/data/myid
 
 **Hadoop-1 (192.168.56.191)**
 
-NameNode, Zookeeper, JournalNode, DataNode, DFSZKFailoverController
+`NameNode, Zookeeper, JournalNode, DataNode, DFSZKFailoverController`
 
 
 
 **Hadoop-2 (192.168.56.192)**
 
-NameNode, Zookeeper, JournalNode, DataNode, DFSZKFailoverController
+`NameNode, Zookeeper, JournalNode, DataNode, DFSZKFailoverController`
 
 
 
 **Hadoop-3 (192.168.56.193)**
 
-JournalNode, Zookeeper, DataNode
+`JournalNode, Zookeeper, DataNode`
 
 
 
 **Hadoop-4 (192.168.56.194)**
 
-DataNode
+`DataNode`
 
 
 
 **Hadoop-5 (192.168.56.195)**
 
-DataNode
+`DataNode`
 
 
 
@@ -433,31 +434,31 @@ Yarn의 리소스 매니저는 DFSZKFailoverController가 내장되어 있어서
 
 **Hadoop-1 (192.168.56.191)**
 
-NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager
+`NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager`
 
 
 
 **Hadoop-2 (192.168.56.192)**
 
-NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager 
+`NameNode, ResourceManager, Zookeeper, JournalNode, DataNode, DFSZKFailoverController, NodeManager `
 
 
 
 **Hadoop-3 (192.168.56.193)**
 
-JournalNode, Zookeeper, DataNode, NodeManager
+`JournalNode, Zookeeper, DataNode, NodeManager`
 
 
 
 **Hadoop-4 (192.168.56.194)**
 
-DataNode, NodeManager
+`DataNode, NodeManager`
 
 
 
 **Hadoop-5 (192.168.56.195)**
 
-DataNode, NodeManager
+`DataNode, NodeManager`
 
 
 
