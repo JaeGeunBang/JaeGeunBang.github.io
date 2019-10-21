@@ -322,7 +322,9 @@ vi /home/zookeeper/data/myid
 
 2. 저널 노드를 실행한다.
 > hadoop-1: sbin/hadoop-daemon.sh start journalnode
+>
 > hadoop-2: sbin/hadoop-daemon.sh start journalnode
+>
 > hadoop-3: sbin/hadoop-daemon.sh start journalnode
 
 
