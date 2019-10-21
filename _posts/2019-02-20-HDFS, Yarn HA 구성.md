@@ -323,7 +323,11 @@ vi /home/zookeeper/data/myid
 2. 저널 노드를 실행한다.
 > hadoop-1: sbin/hadoop-daemon.sh start journalnode
 >
+> 
+>
 > hadoop-2: sbin/hadoop-daemon.sh start journalnode
+>
+> 
 >
 > hadoop-3: sbin/hadoop-daemon.sh start journalnode
 
@@ -332,7 +336,9 @@ vi /home/zookeeper/data/myid
 
 3. 저널 노드가 준비 되었다면, 네임 노드를 포맷 후 실행한다. (active 네임노드)
 > hadoop-1: bin/hdfs namenode -format
+>
 > 
+>
 > hadoop-1: sbin/hadoop-daemon.sh start namenode
 
 
@@ -340,7 +346,9 @@ vi /home/zookeeper/data/myid
 
 4. standby 네임노드를 실행한다.
 > hadoop-2: bin/hdfs namenode -bootstrapStandby
+>
 > 
+>
 > hadoop-2: sbin/hadoop-daemon.sh start namenode
 
 
@@ -396,7 +404,9 @@ Hadoop-1, 2에 네임노드가 구동중이다.
 또한 아래 명령을 통해 확인하 수 있다.
 
 > hadoop1: bin/hdfs haadmin -getServiceState rm1 (=active)
+>
 > 
+>
 > hadoop1: bin/hdfs haadmin -getServiceState rm2 (=standby)
 
 
@@ -423,7 +433,9 @@ Hadoop-1,2,3에 저널노드와 주키퍼가 구동중이다.
 
 3. 상태 확인을 통해 리소스 매니저의 active, standby 상태를 확인할 수 있다.
 > hadoop1: bin/yarn rmadmin -getServiceState rm1 (=active)
+>
 > 
+>
 > hadoop1: bin/yarn rmadmin -getServiceState rm2 (=standby)
 
 
