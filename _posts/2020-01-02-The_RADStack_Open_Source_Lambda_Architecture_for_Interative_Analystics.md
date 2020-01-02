@@ -1,4 +1,4 @@
-```
+---
 layout: post
 title: "The RADStack: Open Source Lambda Archietecture for Interactive Analystics"
 categories:
@@ -7,7 +7,7 @@ tags:
   - druid
   - paper
 last_modified_at: 2020-01-02T12:57:42+09:00
-```
+---
 
 
 

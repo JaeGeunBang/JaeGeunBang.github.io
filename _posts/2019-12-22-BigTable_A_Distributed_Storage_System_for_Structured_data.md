@@ -1,4 +1,4 @@
-```
+---
 layout: post
 title: "BigTable_A_Distributed_Storage_System_for_Structured_data (OSDI 2006)"
 categories:
@@ -7,7 +7,7 @@ tags:
   - hbase
   - paper
 last_modified_at: 2019-12-22T12:57:42+09:00
-```
+---
 
 
 
