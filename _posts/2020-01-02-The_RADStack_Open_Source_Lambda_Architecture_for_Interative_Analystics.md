@@ -56,5 +56,32 @@ last_modified_at: 2020-01-02T12:57:42+09:00
 
 ### Druid (Serving Layer)
 
+앞에 Druid 정리 참조.
 
 
+
+<hr>
+
+### Processing Layer
+
+- Streaming 처리, Batch 처리
+  - 여기선 Apache Samza를 통해 Druid로 데이터를 ingest 하기 전 실시간 전처리를 진행한다.
+    - Samza 외에 다른 Streaming 서비스를 사용해도 무방하다.
+  - 허나 Samza는 `exactly-once processing`를 제공하지 않는다.
+    - 즉, 100% 정확하게 데이터 전송을 보장하지 않으며, 네트워크 이슈가 발생했을 때 데이터 중복이 발생할 수 있다.
+  - 이러한 이유 때문에, hadoop을 통해 batch pipeline을 동작시켜 좀더 정확한 transformation 과정을 진행한다. (늦게 들어오는 event 들도 처리할 수 있다.)
+    - 이후 batch를 통해 생성된 segment가 latest version이기 때문에 기존 streaming에서 생성한 segment는 삭제된다.
+
+> streaming 처리에 목적은 정확한 데이터 분석 보단 추세나 트렌드를 알기위함이 더 크기 때문에, 이런식으로 운영을 해도 무방하다.
+
+
+
+<hr>
+
+### Delivery Layer
+
+- Kafka라는 publish, subscribe model 기반 distributed messaging system을 사용한다.
+  - message (event)는 topic이라는 단위로 유지한다.
+- 두 가지 주요 Consumer가 있다.
+  - 1 Consumer는 Samza job이 수행하며, kafka message를 읽어 실시간 처리 후 Druid에게 전달한다.
+  - 2 Consumer는 Druid의 deep storage에 저장한다. deep storage에 저장된 raw event는 위에서 언급했듯이, batch 처리를 통해, streaming 처리보다 정확한 segment를 생성하는 역할을 한다.
