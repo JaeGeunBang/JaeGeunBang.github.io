@@ -6,6 +6,9 @@ categories:
 tags:
   - druid
   - paper
+  - samza
+  - hadoop
+  - kafka
 last_modified_at: 2020-01-02T12:57:42+09:00
 ---
 
