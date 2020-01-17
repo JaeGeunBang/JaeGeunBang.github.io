@@ -37,7 +37,6 @@ last_modified_at: 2020-01-13T12:57:42+09:00
 <hr>
 
 
-
 HBase는 open-source column-oriented NoSQL DB라 정의할 수 있다.
 
 - Java로 씌여졌으며, Hadoop의 HDFS 위에서 동작한다.
@@ -57,6 +56,20 @@ HBase는 open-source column-oriented NoSQL DB라 정의할 수 있다.
 
 
 
+> Column-oriented란?
+>
+> - 저장 방식은 크게 Row, Column 두 가지 방식이 있다.
+> - Row-oriented는 Row 단위로 저장한다.
+>   - `1~10번 row -> File 1, 11~20번 row -> File 2 ....`
+>   - 필요한 Column만 읽는 분석하는 App에 적합하지 않는다.
+>   - 하지만, full scan과 같은 (`ex. select * from .. limit 10`) 작업이 많은 App에 더 적합하다.
+> - Column-oriented은 같은 Column 단위로 저장하며, 필요한 Column만 읽는 분석 App에 적합하다.
+>   - `1번 Col -> File 1, 2번 Col -> File 2 ...`
+>   - 보통 DB의 Disk IO가 bottleneck이 발생하는데, 모든 File을 읽지 않고 필요한 Column만 가지는 File을 읽기 때문에 IO 비용이 훨씬 줄어든다.
+>   - 하지만, full scan과 같은 작업은 여러 File들을 Join 하는 추가 비용이 들기 때문에 속도 저하가 발생한다.
+
+
+
 **Logical Architecture**
 
 - Master-Slave 구조를 가지며, HMaster, HRegions 로 구성된다.
@@ -72,9 +85,9 @@ HBase는 open-source column-oriented NoSQL DB라 정의할 수 있다.
 - ***Tables***: row들의 logical collection을 뜻하며, 여러 HRegion에 저장되어 있다.
 - ***Rows***: 데이터 접근을 위한 unique한 row key를 가지며, 더불어 CF, Column Qualifier도 가진다.
 - ***Column Families***: row 내 organized된 데이터이다. CF는 하나 이상의 column들로 이루어져 있으며 사전에 정의되어야 한다.
-- ***Column Qualifier***: CF내 정의된 column이다. 빈값이여도 상관 없다. Column을 좀더 세분화 하고 싶을때 사용하는 것 같음.
-- ***Cell***: row, CF, Column qualifier를 결합하며, unique 하게 구분되는 단위이다.
-- ***Version/Timestamp***: cell 내 모든 value들은 versioned 되어지며, 데이터 접근이 발생할 때 가장 최신 Version 데이터를 읽게된다. (최근 시간)
+- ***Column Qualifier***: CF내 정의된 column이다. 빈값이여도 상관 없다. Column을 좀더 세분화 하고 싶을때 사용하는 것 같음. (*2-depth column, 미리 정의할 필요 없이 자유롭게 정의한다.*)
+- ***Cell***: row, CF, Column qualifier를 결합하며, unique 하게 구분되는 단위이다. *row가 가지는 data (=value)라고 생각하면 된다.*
+- ***Version/Timestamp***: cell 내 모든 value들은 versioned 되어지며, 데이터 접근이 발생할 때 가장 최신 Version 데이터를 읽게된다. (*최근 시간*)
 
 ![1](https://user-images.githubusercontent.com/22383120/72341137-dcb1da80-370c-11ea-9da3-48addf870cea.PNG)
 
@@ -83,6 +96,10 @@ HBase는 open-source column-oriented NoSQL DB라 정의할 수 있다.
 - Sorted rowkeys
   - Hbase 내 데이터는 rowkey 기반으로 정렬되어 있다. 그렇기 때문에 `range 검색`이 가능하며, `빠른 read 성능`을 보인다.
   - 보통 최근 record의 검색을 초점을 맞추는 application은 `rowkey에 시간`을 넣는다. 그럼 시간순대로 정렬될 것이며, `시간 range 검색`이 가능해진다.
+  
+  > 기본 Key를 (index) 지원하면, random read/write, range scan 같은 기능이 가능해진다.
+  >
+  > 그 중에 secondary index를 지원하면, 다른 column도 index가 가능하다. (Apache Phenix)
 - Control on data sharding
   - 데이터를 어떻게 클러스터 내 distributed 할지 결정할 수 있다. 
   - rowkey를 어떻게 하냐에 따라 특정 노드에 데이터가 hot(?) 할 수 있기 때문에, `rowkey는 고르게 분포될 수 있도록 선정해야한다.`
@@ -90,10 +107,13 @@ HBase는 open-source column-oriented NoSQL DB라 정의할 수 있다.
   - CAP 이론에 따르면, HBase는 CP를 기반으로 동작한다. 즉. `항상 read에 대한 consistency를 보장`한다. (어느 노드에서 데이터를 읽더라도 같은 데이터를 반환해준다.)
   - 단, write 성능은 떨어진다. (tradeoff). application이 read 성능보다 write가 더 중요하다면 HBase는 올바른 선택은 아닐것이다.
 - Scalability
+  
   - HBase에 노드를 추가할 수록 성능도 linear하게 상승할 것이며 쉽게 확장할 수 있다.
 - Automatic failover support
+  
   - 높은 availability를 제공하는데, 이는 기본 데이터를 replica 하기 때문이다. (HDFS의 특징을 가져감)
 - API Support
+  
   - Java API를 제공한다.
 
 
