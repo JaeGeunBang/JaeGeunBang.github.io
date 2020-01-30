@@ -14,11 +14,6 @@ last_modified_at: 2020-01-02T12:57:42+09:00
 
 
 
-### The RADStack: Open Source Lambda Archietecture for Interactive Analystics
-
-<hr>
-
-
 ### 개요
 
 - RADStack은 Real-Time Anlaytics Data Stack

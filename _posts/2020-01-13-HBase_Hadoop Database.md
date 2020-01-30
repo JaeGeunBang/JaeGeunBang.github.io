@@ -12,11 +12,6 @@ last_modified_at: 2020-01-13T12:57:42+09:00
 
 
 
-### HBase - Hadoop Database
-
-<hr>
-
-
 해당 논문은 링크가 따로 없다.. HBase를 요약정리한 논문 정도로 보면 된다.
 
 
