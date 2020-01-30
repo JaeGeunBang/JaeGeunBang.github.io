@@ -84,6 +84,19 @@ echo $var
 
 
 
+### Concat String
+
+```
+var1="hello"
+var2="world"
+var3="$var1$var2"000
+echo $var3
+```
+
+> 출력값: helloworld000
+
+
+
 ### 숫자 계산
 
 모든 변수의 값은 문자열로 취급하기 때문에, 숫자 연산 (+, -, *, /) 를 하기 위해 `expr` 키워드를 사용한다.*
