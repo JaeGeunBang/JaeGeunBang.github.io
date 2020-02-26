@@ -1,4 +1,4 @@
-```
+---
 layout: post
 title: "Dremel_Interactive Analasis of Web-Scale Datasets"
 categories:
@@ -8,7 +8,7 @@ tags:
   - paper
   - dremel
 last_modified_at: 2020-02-17T12:57:42+09:00
-```
+---
 
 
 

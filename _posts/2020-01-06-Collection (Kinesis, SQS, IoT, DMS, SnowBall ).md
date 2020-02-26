@@ -1,4 +1,4 @@
-```
+---
 layout: post
 title: "AWS Collection (Kinesis, SQS, IoT, DMS, Snawball)"
 categories:
@@ -11,7 +11,7 @@ tags:
   - DMS
   - Snawball
 last_modified_at: 2020-01-06T12:57:42+09:00
-```
+---
 
 
 
