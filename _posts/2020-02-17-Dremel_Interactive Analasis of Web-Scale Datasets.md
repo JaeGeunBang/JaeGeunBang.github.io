@@ -12,19 +12,44 @@ last_modified_at: 2020-02-17T12:57:42+09:00
 
 
 
-Nested Columnar Storage
+**Dremel**
 
-Repetition and Definition Level
+Dremel은 read-only nested data의 분석을 위한 scalable, interactive ad-hoc query system 이다.
+
+- multi-level execution tree, columnar data layout을 이용해 수많은 row를 가진 table에 aggregation query을 second 단위로 끝낼 수 있다.
 
 
+
+### Data Model
+
+Dremel에서 사용하는 data model은 strongly-typed nested records 기반으로 한다.
+
+- Record는 1개 또는 여러 field들로 이루어질 수 있고, Atomic Type으로 Int, float, number, string 등을 지원한다.
+
+- Field의 종류는 크게 3가지가 있다.
+
+  - Repeated field (*): record에 여러 번 나타날 수 있음을 나타낸다.
+
+  - Optional field (?): record에 값이 없을 수 있음 (missing) 을 나타낸다.
+
+  - required field: 무조건 1개를 의미한다.
+
+    
+
+### Nested Columnar Storage
+
+**Repetition and Definition Level**
+
+- record는 value만을 나타내지 않고, repetition level, definition level과 함께 나타난다.
 
 Repetition Level
 
-- value의 반복되는 'level'을 알기 위함
+- value의 반복되는 `level`을 알기 위함
+- Name.Language.Code value들이 여러 있을 때, 실제 Name이나 Language가 몇 번 반복되는지 알기 위함
 
 Definition Level
 
-- value의 Missing의 정도(?)를 알기 위함
+- value의 Missing의 정도(?)를 알기 위함. field의 type은 `optional`, `repeated` 이다.
 
 ![1](https://user-images.githubusercontent.com/22383120/74655680-196f6680-51d0-11ea-8cba-96e1c14a9604.PNG)
 
