@@ -60,7 +60,7 @@ File Metadata
 4-byte length in bytes of file metadata
 ```
 
-![1](https://user-images.githubusercontent.com/22383120/76186043-7761fd80-6214-11ea-9996-aef642944a09.PNG)
+[그림 1]
 
 - 테이블 형태로 표현하면 위와 같다.
 
@@ -80,6 +80,27 @@ File Metadata
   - 블록 크기가 크면, 더 많은 Row들을 가지며, IO 성능을 높여 `효율적인 Scan 이 가능`하다. 허나 `메모리 사용량은 증가`한다.
   - 블록 크기가 작아지면 반대
 - 블록은 HDFS 블록에서 읽을수 있어야 하기 때문에 (?), 블록 크기가 HDFS 블록 크기보다 크면 안된다.
+
+
+
+Mimumum/Maximum Filtering
+
+- Parquet 2.0 이후부터, row group 별 min/max statistics 값을 가진다. 이를 통해 필요 없는 row group들을 제거할 수 있다.
+- 만약 `SELECT * FROM TABLE WHERE A < 10` 의 Query가 요청되었을 때, 
+  - 각 Row group이 가지는 min, max 값이랑 overlap이 되는 row group만 반환하게 된다.
+
+
+
+Page Index
+
+- Page가 어느 file에 위치하는지, 어느 row를 포함하는지, mim/max statistics 값 등에 관한 정보를 가진다.
+- Page Index는 footer에 저장된다.
+
+- Query 요청이 들어왔을때,
+  - footer에 Page Index를 먼저 읽어, 수행할 Page들이 무엇인지 결정한다.
+- Scan 요청이 들어왔을때,
+  - footer를 읽지 않아도 된다. 어처피 다 읽어야 하기 때문에
+- Page Index는 Sorted 데이터에서 제일 빠르게 동작한다. 
 
 
 
@@ -133,6 +154,8 @@ ORC 속성
 ### 참고
 
 https://parquet.apache.org/documentation/latest/
+
+https://blog.cloudera.com/speeding-up-select-queries-with-parquet-page-indexes/
 
 https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC
 
