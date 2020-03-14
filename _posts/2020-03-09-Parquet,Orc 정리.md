@@ -60,7 +60,7 @@ File Metadata
 4-byte length in bytes of file metadata
 ```
 
-[그림 1]
+![1](https://user-images.githubusercontent.com/22383120/76186043-7761fd80-6214-11ea-9996-aef642944a09.PNG)
 
 - 테이블 형태로 표현하면 위와 같다.
 
